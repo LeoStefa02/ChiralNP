@@ -1,7 +1,8 @@
 import numpy as np
-from crystal import FCCLattice
-from shapes import Cube
-from point_in_mesh import *
+from .crystal import FCCLattice
+from .shapes import Cube
+from .point_in_mesh import *
+from scipy.spatial import distance
 
 class Nanoparticle:
     def __init__(self, xyz_file=None):
@@ -40,6 +41,13 @@ class Nanoparticle:
     def get_center_of_mass(self):
         # Calculate center of mass
         pass
+
+    def get_diameter(self):
+        # Calculate pairwise distances between all points
+        pairwise_distances = distance.pdist(self.positions)
+        
+        # The diameter is the maximum distance
+        return np.max(pairwise_distances)
 
     def write_xyz(self, filename):
         with open(filename, 'w') as f:

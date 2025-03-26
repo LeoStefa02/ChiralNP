@@ -1,5 +1,5 @@
 import numpy as np
-from point_in_mesh import *
+from .point_in_mesh import *
 
 class Shape:
     def is_inside(self, point):
@@ -56,6 +56,9 @@ class Stl(Shape):
     
     def is_inside(self, point):
         return self.fast_mesh.contains_single_point(point)
+    
+    def is_inside_multi(self, points):
+        return self.fast_mesh.contains(points)
     
     def boundary_box(self):
         bounds = self.mesh.bounds

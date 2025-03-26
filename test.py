@@ -1,18 +1,15 @@
-from nanoparticle import *
-from shapes import *
-from crystal import *
-from chirality import *
+from ChiralNP import nanoparticle, shapes, crystal, chirality
 
 # Example Usage
 # Create an XYZ nanoparticle
-xyz_nanoparticle = Nanoparticle('../seeds/Cu4631.xyz')
+xyz_nanoparticle = nanoparticle.Nanoparticle('../seeds/Cu4631.xyz')
 
-sphere = Sphere(radius=50)                      # Sphere shape
-cube = Cube(edge=50)                            # Cube Shape
-squirrel = Stl('../seeds/stl/squirrel.stl', 50) # Squirrel Shape
+sphere = shapes.Sphere(radius=50)                      # Sphere shape
+cube = shapes.Cube(edge=50)                            # Cube Shape
+squirrel = shapes.Stl('../seeds/stl/squirrel.stl', 50) # Squirrel Shape
 
 # Create FCC lattice
-fcc_lattice = FCCLattice(a=4.08)
+fcc_lattice = crystal.FCCLattice(a=4.08)
 
 # Generate FCC points within the sphere
 fcc_points_sphere = fcc_lattice.generate_points(sphere)
@@ -20,7 +17,7 @@ fcc_points_cube = fcc_lattice.generate_points(cube)
 fcc_points_squirrel = fcc_lattice.generate_points(squirrel)
 
 
-nanoparticle = Nanoparticle()
+nanoparticle = nanoparticle.Nanoparticle()
 # Create a Nanoparticle from the FCC points
 # (You'd need to determine atom types based on the desired material)
 # For example for gold:
@@ -48,7 +45,7 @@ rules = [
     {'type': 'cylinder', 'axis': [0, 0, 1], 'radius': 3.0},     # Remove inside cylinder
     {'type': 'sphere', 'center': [0, 0, 0], 'radius': 30.0}      # Remove inside sphere
 ]
-modifier = ChiralityModifier()
+modifier = chirality.ChiralityModifier()
 modifier.modify_chirality(nanoparticle, rules)
 
 # Check chirality again

@@ -5,7 +5,6 @@ src/ChiralNP/crystal.py
 src/ChiralNP/nanoparticle.py
 src/ChiralNP/point_in_mesh.py
 src/ChiralNP/shapes.py
-src/ChiralNP/test.py
 src/ChiralNP/utils.py
 src/ChiralNP_STEFANELLI.egg-info/PKG-INFO
 src/ChiralNP_STEFANELLI.egg-info/SOURCES.txt
